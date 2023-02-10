@@ -10,14 +10,14 @@ export default function EditModal({ indexToEdit }: EditModalProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const nameList = useModalStore((store) => store.nameList);
   const updateNameList = useModalStore((store) => store.updateNameList);
-  const toggleIsOpen = useModalStore((store) => store.toggleIsOpen);
+  const toggle = useModalStore((store) => store.toggleEditIsOpen);
 
   const handleKeyDown = useCallback((key: string, value: string) => {
     if (key.toLowerCase() === "enter") {
       let tempList = [...nameList];
       tempList.splice(indexToEdit, 1, value);
       updateNameList(tempList);
-      toggleIsOpen();
+      toggle();
     }
   }, []);
 
@@ -35,6 +35,7 @@ export default function EditModal({ indexToEdit }: EditModalProps) {
         justifyContent: "center",
         flexDirection: "column",
         gap: "15px",
+        zIndex: 1000
       }}
     >
       <div
@@ -80,7 +81,7 @@ export default function EditModal({ indexToEdit }: EditModalProps) {
             borderRadius: "5px",
           }}
           onClick={() => {
-            toggleIsOpen();
+            toggle();
           }}
           onMouseEnter={(e) => {
             (e.target as HTMLDivElement).style.backgroundColor = "#DAFFE3";

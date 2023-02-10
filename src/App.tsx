@@ -3,16 +3,17 @@ import EditModal from "./components/EditModal/EditModal";
 import { useModalStore } from "./store/use-modal";
 import { useCallback, useEffect } from "react";
 import Card from "./components/Card/Card";
+import RemoveModal from "./components/RemoveModal/RemoveModal";
 
 function App() {
-  const isOpen = useModalStore((store) => store.isOpen);
-  const setName = useModalStore((store) => store.setName);
-  const name = useModalStore((store) => store.name);
-  const nameList = useModalStore((store) => store.nameList);
-  const setNameList = useModalStore((store) => store.setNameList);
-  const indexToEdit = useModalStore((store) => store.indexToEdit);
-
-  useEffect(() => console.log(nameList), [nameList]);
+  const editIsOpen = useModalStore((s) => s.editIsOpen);
+  const setName = useModalStore((s) => s.setName);
+  const name = useModalStore((s) => s.name);
+  const nameList = useModalStore((s) => s.nameList);
+  const setNameList = useModalStore((s) => s.setNameList);
+  const indexToEdit = useModalStore((s) => s.indexToEdit);
+  const removeIsOpen = useModalStore(s => s.removeIsOpen)
+  const dataToRemove = useModalStore(s => s.dataToRemove);
 
   return (
     <div className="App">
@@ -33,12 +34,15 @@ function App() {
             style={{ borderRadius: '15px', border: '2px solid green', padding: '15px' }}
           />
         </div>
-        {isOpen && (
+        {editIsOpen && (
           <EditModal indexToEdit={indexToEdit} />
+        )}
+        {removeIsOpen && (
+          <RemoveModal name={dataToRemove} />
         )}
         <div style={{ width: '100%', display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
           {nameList.map((el, index) => (
-            <Card name={el} index={index} />
+            <Card name={el} index={index} key={index} />
           ))}
         </div>
       </div>
