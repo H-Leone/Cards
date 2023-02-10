@@ -6,12 +6,12 @@ interface ToggleButtonProps {
 }
 
 export default function ToggleButton({ index, name }: ToggleButtonProps) {
-    const toggleIsOpen = useModalStore(store => store.toggleIsOpen)
+    const toggleEditIsOpen = useModalStore(store => store.toggleEditIsOpen)
     const setIndexToEdit = useModalStore(store => store.setIndexToEdit)
 
     return (
         <div>
-            <button onClick={() => { toggleIsOpen(); setIndexToEdit(index) }}>Editar</button>
+            <button onClick={() => { toggleEditIsOpen(); setIndexToEdit(index) }}>Editar</button>
         </div>
     )
 }
