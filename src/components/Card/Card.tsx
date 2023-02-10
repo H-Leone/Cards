@@ -1,5 +1,5 @@
 import { useModalStore } from "../../store/use-modal";
-import ToggleButton from "../ToggleButton/ToggleButton";
+import  ToggleButton from "../ToggleButton/ToggleButton";
 import { FiX } from "react-icons/fi";
 
 interface CardProps {
@@ -12,13 +12,15 @@ export default function Card({ index, name }: CardProps) {
     const setDataToRemove = useModalStore(s => s.setDataToRemove);
     return (
         <div
-        style={{ backgroundColor: "red", width: "150px", position: "relative" }}
+        style={{ boxShadow: '1px 1px 8px rgba(0, 0, 0, 0.4)', width: "200px", height: '100px', position: "relative", borderRadius: '7px' }}
         >
         <p>{name}</p>
-        <ToggleButton index={index} name={name} />
+        <div style={{ position: 'absolute', top: 7, right: 27, cursor: 'pointer' }}>
+            <ToggleButton index={index} />
+        </div>
         <div
             style={{ position: "absolute", top: 7, right: 7, cursor: "pointer" }}
-            onClick={(e) => {
+            onClick={() => {
                 setDataToRemove(name);
                 toggle();
             }}

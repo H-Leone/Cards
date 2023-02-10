@@ -13,7 +13,7 @@ export default function EditModal({ indexToEdit }: EditModalProps) {
   const toggle = useModalStore((store) => store.toggleEditIsOpen);
 
   const handleKeyDown = useCallback((key: string, value: string) => {
-    if (key.toLowerCase() === "enter") {
+    if (key.toLowerCase() === "enter" && value != '') {
       let tempList = [...nameList];
       tempList.splice(indexToEdit, 1, value);
       updateNameList(tempList);

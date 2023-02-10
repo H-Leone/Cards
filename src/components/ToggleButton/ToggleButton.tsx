@@ -1,17 +1,17 @@
 import { useModalStore } from "../../store/use-modal"
+import { FiEdit } from "react-icons/fi";
 
 interface ToggleButtonProps {
     index: number;
-    name: string;
 }
 
-export default function ToggleButton({ index, name }: ToggleButtonProps) {
+export default function ToggleButton({ index }: ToggleButtonProps) {
     const toggleEditIsOpen = useModalStore(store => store.toggleEditIsOpen)
     const setIndexToEdit = useModalStore(store => store.setIndexToEdit)
 
     return (
         <div>
-            <button onClick={() => { toggleEditIsOpen(); setIndexToEdit(index) }}>Editar</button>
+            <FiEdit onClick={() => { toggleEditIsOpen(); setIndexToEdit(index) }} style={{ cursor: 'pointer' }} />
         </div>
     )
 }
