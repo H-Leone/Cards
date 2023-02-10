@@ -19,6 +19,9 @@ interface ModalStore {
 
     removeIsOpen: boolean;
     toggleRemoveIsOpen: () => void;
+
+    filter: string;
+    setFilter: (value: string) => void;
 }
 
 export const useModalStore = create<ModalStore>((set) => ({
@@ -34,5 +37,7 @@ export const useModalStore = create<ModalStore>((set) => ({
     dataToRemove: '',
     setDataToRemove: data => set({ dataToRemove: data }),
     removeIsOpen: false,
-    toggleRemoveIsOpen: () => set(({ removeIsOpen }) => ({ removeIsOpen: !removeIsOpen }))
+    toggleRemoveIsOpen: () => set(({ removeIsOpen }) => ({ removeIsOpen: !removeIsOpen })),
+    filter: '',
+    setFilter: value => set({ filter: value })
 }))
